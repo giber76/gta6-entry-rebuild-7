@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solara Bay — an open-world crime game</title>
+<link rel="icon" href="data:,">
+<style>
+  html, body { margin: 0; padding: 0; overflow: hidden; background: #0a0e14; font-family: 'Segoe UI', Arial, sans-serif; }
+  #game, #game canvas { position: fixed; inset: 0; display: block; }
+  .panel { position: fixed; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,.8); z-index: 5; }
+  #hud-top-left { top: 12px; left: 12px; }
+  #hud-cash { font-size: 30px; font-weight: 800; color: #7dff8a; }
+  #hud-wanted { font-size: 22px; letter-spacing: 2px; margin-top: 2px; }
+  #hud-mission { font-size: 15px; font-weight: 700; color: #ffd774; margin-top: 6px; }
+  #hud-objective { font-size: 12px; color: #e8e8e8; max-width: 300px; }
+  #hud-top-right { top: 12px; right: 12px; text-align: right; }
+  #hud-radio { font-size: 15px; font-weight: 700; color: #ffd774; }
+  #hud-speed { font-size: 22px; font-weight: 800; margin-top: 2px; }
+  #hud-health { width: 170px; height: 12px; background: rgba(0,0,0,.55); border: 1px solid rgba(255,255,255,.5); border-radius: 6px; margin-top: 6px; margin-left: auto; }
+  #hud-health-fill { height: 100%; width: 100%; background: #40c060; border-radius: 5px; }
+  #minimap { position: fixed; right: 12px; bottom: 12px; width: 180px; height: 180px; border: 2px solid rgba(255,255,255,.65); border-radius: 6px; background: #2a2f3a; z-index: 5; }
+  #hud-toast { position: fixed; top: 22%; left: 50%; transform: translateX(-50%); font-size: 24px; font-weight: 800; color: #ffd774; text-shadow: 0 2px 6px rgba(0,0,0,.9); opacity: 0; transition: opacity .4s; z-index: 6; text-align: center; }
+  #hud-help { position: fixed; left: 12px; bottom: 12px; color: rgba(255,255,255,.75); font-size: 12px; text-shadow: 0 1px 2px rgba(0,0,0,.8); z-index: 5; }
+  #overlay { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(160deg, rgba(10,20,40,.82), rgba(60,20,10,.78)); z-index: 10; color: #fff; text-align: center; }
+  #overlay-title { font-size: 64px; font-weight: 900; letter-spacing: 4px; color: #ffd774; text-shadow: 0 4px 18px rgba(0,0,0,.8); }
+  #overlay-sub { font-size: 17px; max-width: 560px; margin: 14px 0 26px; color: #f0e8d8; }
+  #overlay button { font-size: 19px; font-weight: 700; padding: 13px 34px; margin: 6px; border: none; border-radius: 8px; cursor: pointer; background: #e8a838; color: #201404; }
+  #overlay button:hover { background: #ffd774; }
+  #btn-freeroam { background: #4a8ac8 !important; color: #fff !important; }
+  #pause-overlay { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,.55); z-index: 9; color: #fff; font-size: 44px; font-weight: 900; letter-spacing: 6px; }
+</style>
+</head>
+<body>
+<div id="game"></div>
+<div class="panel" id="hud-top-left">
+  <div id="hud-cash">$0</div>
+  <div id="hud-wanted">☆☆☆</div>
+  <div id="hud-mission">M1 — The First Coupe</div>
+  <div id="hud-objective">Steal the coupe and take it to Rico's Garage.</div>
+</div>
+<div class="panel" id="hud-top-right">
+  <div id="hud-radio">♪ VICE 101</div>
+  <div id="hud-speed">0 km/h</div>
+  <div id="hud-health"><div id="hud-health-fill"></div></div>
+</div>
+<canvas id="minimap" width="180" height="180"></canvas>
+<div id="hud-toast"></div>
+<div id="hud-help">W drive · S brake · A/D steer · E enter/exit car · Click shoot · R radio · Z/X map zoom · Esc pause</div>
+<div id="overlay">
+  <div id="overlay-title">SOLARA BAY</div>
+  <div id="overlay-sub">Six jobs. One city. $12,000 on the line. Steal cars, lose the heat, take the money.</div>
+  <div>
+    <button id="btn-new">New Game</button>
+    <button id="btn-freeroam">Free Roam</button>
+  </div>
+</div>
+<div id="pause-overlay">PAUSED</div>
+<script src="vendor/three.min.js"></script>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
